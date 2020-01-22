@@ -11,5 +11,11 @@
     <string name="success">Success!!</string>
     <string name="unsuccess">Unsuccess!!</string>
     <string name="common_user_regi">Common User Registration</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="gender">Select Gender</string>
+    <string name="email">Email</string>
+    <string name="login_page">Login Page</string>
+    <string name="address">Address</string>
 
 </resources>
