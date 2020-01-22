@@ -1,7 +1,6 @@
 package com.eh.paraparbd;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,21 +10,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
 	EditText btnPhoneNo;
 	EditText btnPassword;
 	Button btnLogin;
+	Button btnSignUp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//Set action bar
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		//getSupportActionBar().setLogo(R.drawable.parapar);
+		getSupportActionBar().setDisplayUseLogoEnabled(true);
+		//getSupportActionBar().setDisplayShowTitleEnabled(false);
+		getSupportActionBar().setTitle("");
 		setContentView(R.layout.activity_main);
 
 		btnPhoneNo = findViewById(R.id.phone_no);
 		btnPassword = findViewById(R.id.password);
 		btnLogin = findViewById(R.id.btnLogin);
+		btnSignUp = findViewById(R.id.btnSignUp);
 
+		//After login button press
 		btnLogin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -39,8 +49,18 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		});
+
+		//After sign up button press
+		btnSignUp.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, CommonUserRegistration.class);
+				startActivity(intent);
+			}
+		});
 	}
 
+	//Custom Toast for Success
 	public void mySuccessToast(){
 
 		LayoutInflater layoutInflater = getLayoutInflater();
@@ -54,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 		toast.show();
 	}
 
+	//Custom Toast for Error
 	public void myErrorToast(){
 
 		LayoutInflater layoutInflater = getLayoutInflater();
