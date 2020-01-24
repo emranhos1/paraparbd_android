@@ -1,16 +1,17 @@
-package com.eh.paraparbd;
+package com.eh.paraparbd.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.eh.paraparbd.R;
 
 public class CommonUserRegistration extends AppCompatActivity {
 
@@ -66,22 +67,22 @@ public class CommonUserRegistration extends AppCompatActivity {
 										String password = passwordText.getText().toString();
 										Toast.makeText(CommonUserRegistration.this, "Done", Toast.LENGTH_SHORT).show();
 									} else {
-										Toast.makeText(CommonUserRegistration.this, "Please Insert Password", Toast.LENGTH_SHORT).show();
+										passwordText.setError("Password Should Not Be Blank");
 									}
 								} else {
-									Toast.makeText(CommonUserRegistration.this, "Please Insert Address", Toast.LENGTH_SHORT).show();
+									addressText.setError("Address Should Not Be Blank");
 								}
 							} else {
-								Toast.makeText(CommonUserRegistration.this, "Please Insert Phone No", Toast.LENGTH_SHORT).show();
+								phoneNoText.setError("Phone No Should Not Be Blank");
 							}
 						} else {
-							Toast.makeText(CommonUserRegistration.this, "Please Insert Email", Toast.LENGTH_SHORT).show();
+							emailText.setError("Email Should Not Be Blank");
 						}
 					} else {
-						Toast.makeText(CommonUserRegistration.this, "Please Insert Last Name", Toast.LENGTH_SHORT).show();
+						lastNameText.setError("Last Name Should Not Be Blank");
 					}
 				} else {
-					Toast.makeText(CommonUserRegistration.this, "Please Insert First Name", Toast.LENGTH_SHORT).show();
+					firstNameText.setError("First Name Should Not Be Blank");
 				}
 			}
 		});

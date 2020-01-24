@@ -7,7 +7,7 @@
     android:background="@drawable/login_back"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".CommonUserRegistration">
+    tools:context=".login.CommonUserRegistration">
 
     <ImageView
         android:id="@+id/imageView"
