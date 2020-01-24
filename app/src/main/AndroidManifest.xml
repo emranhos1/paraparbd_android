@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eh.paraparbd">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme"></activity>
-        <activity android:name=".CommonUserRegistration" />
+        <activity android:name=".commonuser.RentACarBooking"></activity>
+        <activity android:name=".commonuser.CommonUserDashboard" />
+        <activity
+            android:name=".login.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".login.CommonUserRegistration" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
