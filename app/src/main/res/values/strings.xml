@@ -19,5 +19,12 @@
     <string name="address">Address</string>
     <string name="please">Please</string>
     <string name="Insert">Insert</string>
+    <string name="hire">Hire A Car</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="history">History</string>
+    <string name="all_history">All History</string>
+    <string name="e_bus_ticketing">E Bus Ticketing</string>
+    <string name="rent_a_car">Rent A Car</string>
+    <string name="raid_sharing">Raid Sharing</string>
 
 </resources>
