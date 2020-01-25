@@ -26,5 +26,16 @@
     <string name="e_bus_ticketing">E Bus Ticketing</string>
     <string name="rent_a_car">Rent A Car</string>
     <string name="raid_sharing">Raid Sharing</string>
+    <string name="rent_a_car_booking">rent A Car Booking</string>
+    <string name="booking_warning">If Car was not selected that means this service not workable for your District</string>
+    <string name="click_here">Click Here</string>
+    <string name="dd_yy_mm">DD/MM/YY</string>
+    <string name="hh_mm">HH:MM</string>
+    <string name="pickup_from">Pickup From :</string>
+    <string name="select_car">Select Car :</string>
+    <string name="destination">Destination</string>
+    <string name="pickup_address">Pickup Address</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="send_request">Send Request</string>
 
 </resources>
