@@ -1,18 +1,18 @@
 package com.eh.paraparbd.pojo;
 
-import com.eh.paraparbd.model.LoginTable;
+import com.eh.paraparbd.model.CommonUserRegTable;
 
-public class JsonCollection {
+public class CommonUserRegCollection {
 
-    private LoginTable data;
+    private CommonUserRegTable data;
     private Boolean success;
     private String message;
 
-    public LoginTable getData() {
+    public CommonUserRegTable getData() {
         return data;
     }
 
-    public void setData(LoginTable data) {
+    public void setData(CommonUserRegTable data) {
         this.data = data;
     }
 
