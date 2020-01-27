@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
 	final static String TAG = "MainActivity";
 
-	private static LoginTable loginTable;
+	private static LoginTable loginTable = new LoginTable();
 	private static PBDApi pbdApi = PBDUtil.webserviceInitialize();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		context = MainActivity.this;
 		super.onCreate(savedInstanceState);
 
 		//Set action bar
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 				phoneNo = btnPhoneNo.getText().toString();
 				password = btnPassword.getText().toString();
 
-				Log.i(TAG, phoneNo);
-				Log.e(TAG, password);
+				Log.d(TAG, phoneNo);
+				Log.d(TAG, password);
 
 				if(!phoneNo.isEmpty()){
 					if(!password.isEmpty()){
@@ -77,21 +78,23 @@ public class MainActivity extends AppCompatActivity {
 //						Toast.makeText(context, "Phone No :"+phoneNo, Toast.LENGTH_SHORT).show();
 //						Toast.makeText(context, "Password :"+password, Toast.LENGTH_SHORT).show();
 //						if (phoneNo.equals("01670932273") && password.equals("1234")) {
-						Intent intent = new Intent(MainActivity.this, CommonUserDashboard.class);
-						startActivity(intent);
-						finish();
+
+//							Intent intent = new Intent(MainActivity.this, CommonUserDashboard.class);
+//							startActivity(intent);
+//							finish();
+
 //						} else {
 //							Toast.makeText(context, "Not Match", Toast.LENGTH_SHORT).show();
 //						}
-//						if(PBDUtil.isInternetConnected(context) == true){
-//							getLoginInfo(context, phoneNo, password);
-//
-//						} else {
-//							String title = "No Internet Connection";
-//							String message = "Please check your internet connection";
-//							boolean status = false;
+						if(PBDUtil.isInternetConnected(context) == true){
+							getLoginInfo(context, phoneNo, password);
+
+						} else {
+							String title = "No Internet Connection";
+							String message = "Please check your internet connection";
+							boolean status = false;
 //							AlartUtil.showAlartDialog(context, title, message, status);
-//						}
+						}
 					} else{
 						btnPassword.setError("Password Should Not Be Blank");
 					}
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void getLoginInfo (final Context context, String phoneNo, String password){
-		AlartUtil.showProgressDialog(context);
+//		AlartUtil.showProgressDialog(context);
 		Log.d(TAG, "user phone and pass :: " + phoneNo+" "+password);
 		loginTable.setPhoneNo(phoneNo);
 		loginTable.setPassword(password);
@@ -116,23 +119,31 @@ public class MainActivity extends AppCompatActivity {
 
 				try {
 					LoginCollection responseData =  response.body();
-					Log.e(TAG, "DATA :: " + responseData.getSuccess());
-					if(responseData.getSuccess().equals("true")){
+					Log.d(TAG, "DATA :: " + responseData.getSuccess());
+					if(responseData.getSuccess()){
 						LoginTable login = responseData.getData();
-						//now go to welcome activity
-						Intent welcomeIntent = new Intent(context, CommonUserDashboard.class);
-						//welcomeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-						startActivity(welcomeIntent);
+						Log.d(TAG, "AllUser Id :: " + login.getAllUserId());
+						Log.d(TAG, "Active status :: " + login.getActiveStatus());
+						Log.d(TAG, "Role :: " + login.getUserRole());
+//						//now go to welcome activity
+//						Intent welcomeIntent = new Intent(context, CommonUserDashboard.class);
+//						//welcomeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//						welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//						startActivity(welcomeIntent);
+
+						Intent intent = new Intent(context, CommonUserDashboard.class);
+						startActivity(intent);
+						finish();
+						Log.d(TAG,"Login success!!!##############################");
 					}
-					AlartUtil.hideProgressDialog();
+//					AlartUtil.hideProgressDialog();
 				} catch (Exception e){
 					Log.d(TAG,"list is null");
 					e.printStackTrace();
-					AlartUtil.hideProgressDialog();
-					AlartUtil.showAPInotResponseWarn(context);
+//					AlartUtil.hideProgressDialog();
+//					AlartUtil.showAPInotResponseWarn(context);
 				}
 			}
 
@@ -140,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
 			public void onFailure(Call<LoginCollection> call, Throwable t) {
 				Log.d(TAG,t.getMessage());
 				//Hide Dialog
-				AlartUtil.hideProgressDialog();
-				AlartUtil.showAPInotResponseWarn(context);
+//				AlartUtil.hideProgressDialog();
+//				AlartUtil.showAPInotResponseWarn(context);
 			}
 		});
 	}
