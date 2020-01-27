@@ -84,9 +84,20 @@ public class CommonUserRegistration extends AppCompatActivity {
 												commonUserRegTable.setPhoneNo(phoneNo);
 												commonUserRegTable.setAddress(address);
 												commonUserRegTable.setPassword(password);
+												commonUserRegTable.setRandomCode("1234");
+												commonUserRegTable.setDeviceImeNo("");
+												commonUserRegTable.setDeviceLocation("");
+												commonUserRegTable.setDeviceIp("");
 
-												Message.toastMessage(context, "Gender" + commonUserRegTable.getGender());
-												//TODO
+												Log.d(TAG, "First Name :: " + commonUserRegTable.getFirstName());
+												Log.d(TAG, "Last Name :: " + commonUserRegTable.getLastName());
+												Log.d(TAG, "Gender :: " + commonUserRegTable.getGender());
+												Log.d(TAG, "Email :: " + commonUserRegTable.getEmail());
+												Log.d(TAG, "Phone No :: " + commonUserRegTable.getPhoneNo());
+												Log.d(TAG, "Address :: " + commonUserRegTable.getAddress());
+												Log.d(TAG, "password :: " + commonUserRegTable.getPassword());
+												Log.d(TAG, "DeviceLocation :: " + commonUserRegTable.getDeviceLocation());
+
 												//FIXME
 												Registration.commonUserRegistration(context, commonUserRegTable);
 											} else {
