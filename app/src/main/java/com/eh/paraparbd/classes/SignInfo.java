@@ -14,7 +14,7 @@
 //import retrofit2.Response;
 //
 //public class SignInfo {
-//    private static LoginTable loginTable;
+//    private static LoginTable loginTable = new LoginTable();
 //    private static PBDApi pbdApi = PBDUtil.webserviceInitialize();
 //    final static String TAG = "SignInfo";
 //
@@ -32,7 +32,7 @@
 //                try {
 //                    LoginCollection responseData =  response.body();
 //                    Log.d(TAG, "DATA :: " + responseData.getSuccess());
-//                    if(responseData.getSuccess().equals(true)){
+//                    if(responseData.getSuccess()){
 //                        LoginTable login = responseData.getData();
 //                        AlartUtil.hideProgressDialog();
 //                    }
