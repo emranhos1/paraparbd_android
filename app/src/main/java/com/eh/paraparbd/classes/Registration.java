@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.model.CommonUserRegTable;
-import com.eh.paraparbd.pojo.JsonCollection;
+import com.eh.paraparbd.pojo.CommonUserRegCollection;
 import com.eh.paraparbd.utils.AlertUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
@@ -18,21 +18,43 @@ public class Registration {
 	private static PBDApi pbdApi = PBDUtil.webserviceInitialize();
 	private final static String TAG = "Registration";
 
-	public static void commonUserRegistration(Context context, CommonUserRegTable commonUserRegTable) {
+	public static void commonUserRegistration(final Context context, CommonUserRegTable commonUserRegTable) {
 		AlertUtil.showProgressDialog(context);
-		//TODO
-		//FIXME
-		Call<JsonCollection> getInfo = pbdApi.commonUserRegistration(commonUserRegTable);
-		getInfo.enqueue(new Callback<JsonCollection>() {
+		Call<CommonUserRegCollection> getInfo = pbdApi.commonUserRegistration(commonUserRegTable);
+		getInfo.enqueue(new Callback<CommonUserRegCollection>() {
 			@Override
-			public void onResponse(Call<JsonCollection> call, Response<JsonCollection> response) {
-				JsonCollection responseData = response.body();
-				Log.d(TAG, "Registration Response DATA :: " + responseData.getSuccess());
+			public void onResponse(Call<CommonUserRegCollection> call, Response<CommonUserRegCollection> response) {
+				try {
+					CommonUserRegCollection responseData = response.body();
+					Log.d(TAG, "Registration Response DATA :: " + responseData.getSuccess());
+					if (responseData.getSuccess()) {
+						CommonUserRegTable regTable = responseData.getData();
+						Log.d(TAG, "First Name :: " + regTable.getFirstName());
+						Log.d(TAG, "Last Name :: " + regTable.getLastName());
+						Log.d(TAG, "Gender :: " + regTable.getGender());
+						Log.d(TAG, "Email :: " + regTable.getEmail());
+						Log.d(TAG, "Phone No :: " + regTable.getPhoneNo());
+						Log.d(TAG, "Address :: " + regTable.getAddress());
+						Log.d(TAG, "password :: " + regTable.getPassword());
+						Log.d(TAG, "DeviceLocation :: " + regTable.getDeviceLocation());
+
+						Message.toastMessage(context, responseData.getMessage());
+					}
+					AlertUtil.hideProgressDialog();
+				} catch (Exception e) {
+					Log.e(TAG, context +" : "+e);
+					e.printStackTrace();
+					AlertUtil.hideProgressDialog();
+					AlertUtil.showAPInotResponseWarn(context);
+				}
 			}
 
 			@Override
-			public void onFailure(Call<JsonCollection> call, Throwable t) {
-
+			public void onFailure(Call<CommonUserRegCollection> call, Throwable t) {
+				Log.d(TAG, t.getMessage());
+				//Hide Dialog
+				AlertUtil.hideProgressDialog();
+				AlertUtil.showAPInotResponseWarn(context);
 			}
 		});
 	}
