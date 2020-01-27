@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.commonuser.CommonUserDashboard;
 import com.eh.paraparbd.model.LoginTable;
-import com.eh.paraparbd.pojo.JsonCollection;
+import com.eh.paraparbd.pojo.LoginCollection;
 import com.eh.paraparbd.utils.AlertUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
@@ -27,14 +27,14 @@ public class SignInfo {
 		loginTable.setPhoneNo(phoneNo);
 		loginTable.setPassword(password);
 
-		Call<JsonCollection> getInfo = pbdApi.userLogin(loginTable);
-		getInfo.enqueue(new Callback<JsonCollection>() {
+		Call<LoginCollection> getInfo = pbdApi.userLogin(loginTable);
+		getInfo.enqueue(new Callback<LoginCollection>() {
 
 			@Override
-			public void onResponse(Call<JsonCollection> call, Response<JsonCollection> response) {
+			public void onResponse(Call<LoginCollection> call, Response<LoginCollection> response) {
 
 				try {
-					JsonCollection responseData = response.body();
+					LoginCollection responseData = response.body();
 					Log.d(TAG, "DATA :: " + responseData.getSuccess());
 					if (responseData.getSuccess()) {
 						LoginTable login = responseData.getData();
@@ -44,13 +44,13 @@ public class SignInfo {
 
 						Intent intent = new Intent(context, CommonUserDashboard.class);
 						context.startActivity(intent);
-						Toast.makeText(context, responseData.getMessage(), Toast.LENGTH_SHORT).show();
+						Message.toastMessage(context, responseData.getMessage());
 					} else {
-						Toast.makeText(context, responseData.getMessage(), Toast.LENGTH_SHORT).show();
+						Message.toastMessage(context, responseData.getMessage());
 					}
 					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {
-					Log.d(TAG, "list is null");
+					Log.d(TAG, context +" : "+e);
 					e.printStackTrace();
 					AlertUtil.hideProgressDialog();
 					AlertUtil.showAPInotResponseWarn(context);
@@ -58,7 +58,7 @@ public class SignInfo {
 			}
 
 			@Override
-			public void onFailure(Call<JsonCollection> call, Throwable t) {
+			public void onFailure(Call<LoginCollection> call, Throwable t) {
 				Log.d(TAG, t.getMessage());
 				//Hide Dialog
 				AlertUtil.hideProgressDialog();
