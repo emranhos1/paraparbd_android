@@ -2,7 +2,7 @@ package com.eh.paraparbd.pojo;
 
 import com.eh.paraparbd.model.LoginTable;
 
-public class LoginCollection {
+public class JsonCollection {
 
     private LoginTable data;
     private Boolean success;
