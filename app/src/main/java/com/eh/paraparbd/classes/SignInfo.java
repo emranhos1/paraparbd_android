@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.commonuser.CommonUserDashboard;
 import com.eh.paraparbd.model.LoginTable;
-import com.eh.paraparbd.pojo.LoginCollection;
+import com.eh.paraparbd.pojo.JsonCollection;
 import com.eh.paraparbd.utils.AlertUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
@@ -27,14 +27,14 @@ public class SignInfo {
 		loginTable.setPhoneNo(phoneNo);
 		loginTable.setPassword(password);
 
-		Call<LoginCollection> getInfo = pbdApi.userLogin(loginTable);
-		getInfo.enqueue(new Callback<LoginCollection>() {
+		Call<JsonCollection> getInfo = pbdApi.userLogin(loginTable);
+		getInfo.enqueue(new Callback<JsonCollection>() {
 
 			@Override
-			public void onResponse(Call<LoginCollection> call, Response<LoginCollection> response) {
+			public void onResponse(Call<JsonCollection> call, Response<JsonCollection> response) {
 
 				try {
-					LoginCollection responseData = response.body();
+					JsonCollection responseData = response.body();
 					Log.d(TAG, "DATA :: " + responseData.getSuccess());
 					if (responseData.getSuccess()) {
 						LoginTable login = responseData.getData();
@@ -44,9 +44,9 @@ public class SignInfo {
 
 						Intent intent = new Intent(context, CommonUserDashboard.class);
 						context.startActivity(intent);
-						Toast.makeText(context, "Login Successful!!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, responseData.getMessage(), Toast.LENGTH_SHORT).show();
 					} else {
-						Toast.makeText(context, "Phone No or Password Incorrect!!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, responseData.getMessage(), Toast.LENGTH_SHORT).show();
 					}
 					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {
@@ -58,7 +58,7 @@ public class SignInfo {
 			}
 
 			@Override
-			public void onFailure(Call<LoginCollection> call, Throwable t) {
+			public void onFailure(Call<JsonCollection> call, Throwable t) {
 				Log.d(TAG, t.getMessage());
 				//Hide Dialog
 				AlertUtil.hideProgressDialog();
