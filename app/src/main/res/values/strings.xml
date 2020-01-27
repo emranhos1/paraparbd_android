@@ -37,5 +37,8 @@
     <string name="pickup_address">Pickup Address</string>
     <string name="total_amount">Total Amount</string>
     <string name="send_request">Send Request</string>
+    <string name="parapar_image">Parapar Image</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 
 </resources>
