@@ -15,7 +15,7 @@ import com.eh.paraparbd.R;
 
 public class AlartUtil {
 
-    public static Dialog dialog;
+    private static Dialog dialog;
 
     public static void showAlartDialog(final Context context, String title, String message, Boolean status){
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -37,7 +37,7 @@ public class AlartUtil {
         dialog.setCancelable(false);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setBackgroundResource(R.drawable.ic_spinner);
+        imageView.setBackgroundResource(R.drawable.custom_progress_animation);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(imageView);
         dialog.setCanceledOnTouchOutside(false);
@@ -53,6 +53,6 @@ public class AlartUtil {
     }
 
     public static  void showAPInotResponseWarn(Context context){
-        Toast.makeText(context, "Database Maintainance!!! Try Again in a few minutes", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Database Maintenance!!! Try Again in a few minutes", Toast.LENGTH_SHORT).show();
     }
 }
