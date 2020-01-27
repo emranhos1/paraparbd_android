@@ -29,7 +29,7 @@ public class CommonUserDashboard extends AppCompatActivity {
 		raidSharingBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				AlartUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
+//				AlertUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
 				Toast.makeText(context, "Not In Service", Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -45,7 +45,7 @@ public class CommonUserDashboard extends AppCompatActivity {
 		eBusTicketingBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				AlartUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
+//				AlertUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
 				Toast.makeText(context, "Not In Service", Toast.LENGTH_SHORT).show();
 			}
 		});

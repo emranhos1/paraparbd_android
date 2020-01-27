@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.eh.paraparbd.R;
 
-public class AlartUtil {
+public class AlertUtil {
 
     private static Dialog dialog;
 

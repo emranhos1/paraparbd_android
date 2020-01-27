@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.eh.paraparbd.R;
 import com.eh.paraparbd.classes.SignInfo;
-import com.eh.paraparbd.utils.AlartUtil;
+import com.eh.paraparbd.utils.AlertUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 							String title = "No Internet Connection";
 							String message = "Please check your internet connection";
 							boolean status = false;
-							AlartUtil.showAlartDialog(context, title, message, status);
+							AlertUtil.showAlartDialog(context, title, message, status);
 						}
 					} else {
 						btnPassword.setError("Password Should Not Be Blank");

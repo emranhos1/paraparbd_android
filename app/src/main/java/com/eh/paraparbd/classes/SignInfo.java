@@ -9,7 +9,7 @@ import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.commonuser.CommonUserDashboard;
 import com.eh.paraparbd.model.LoginTable;
 import com.eh.paraparbd.pojo.LoginCollection;
-import com.eh.paraparbd.utils.AlartUtil;
+import com.eh.paraparbd.utils.AlertUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
 import retrofit2.Call;
@@ -22,7 +22,7 @@ public class SignInfo {
 	private final static String TAG = "SignInfo";
 
 	public static void getLoginInfo(final Context context, String phoneNo, String password) {
-		AlartUtil.showProgressDialog(context);
+		AlertUtil.showProgressDialog(context);
 		Log.d(TAG, "user phone and pass :: " + phoneNo + " " + password);
 		loginTable.setPhoneNo(phoneNo);
 		loginTable.setPassword(password);
@@ -48,12 +48,12 @@ public class SignInfo {
 					} else {
 						Toast.makeText(context, "Phone No or Password Incorrect!!", Toast.LENGTH_SHORT).show();
 					}
-					AlartUtil.hideProgressDialog();
+					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {
 					Log.d(TAG, "list is null");
 					e.printStackTrace();
-					AlartUtil.hideProgressDialog();
-					AlartUtil.showAPInotResponseWarn(context);
+					AlertUtil.hideProgressDialog();
+					AlertUtil.showAPInotResponseWarn(context);
 				}
 			}
 
@@ -61,8 +61,8 @@ public class SignInfo {
 			public void onFailure(Call<LoginCollection> call, Throwable t) {
 				Log.d(TAG, t.getMessage());
 				//Hide Dialog
-				AlartUtil.hideProgressDialog();
-				AlartUtil.showAPInotResponseWarn(context);
+				AlertUtil.hideProgressDialog();
+				AlertUtil.showAPInotResponseWarn(context);
 			}
 		});
 	}
