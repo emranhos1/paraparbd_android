@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/login_phone_icon"
+            android:inputType="phone"
             android:hint="@string/phone_no"/>
 
         <EditText
