@@ -1,15 +1,15 @@
 package com.eh.paraparbd.classes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.commonuser.CommonUserDashboard;
 import com.eh.paraparbd.model.LoginTable;
 import com.eh.paraparbd.pojo.LoginCollection;
 import com.eh.paraparbd.utils.AlertUtil;
+import com.eh.paraparbd.utils.CustomAlertMessage;
+import com.eh.paraparbd.utils.IntentUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
 import retrofit2.Call;
@@ -23,30 +23,23 @@ public class SignInfo {
 
 	public static void getLoginInfo(final Context context, String phoneNo, String password) {
 		AlertUtil.showProgressDialog(context);
-		Log.d(TAG, "user phone and pass :: " + phoneNo + " " + password);
 		loginTable.setPhoneNo(phoneNo);
 		loginTable.setPassword(password);
 
 		Call<LoginCollection> getInfo = pbdApi.userLogin(loginTable);
 		getInfo.enqueue(new Callback<LoginCollection>() {
-
 			@Override
 			public void onResponse(Call<LoginCollection> call, Response<LoginCollection> response) {
-
 				try {
 					LoginCollection responseData = response.body();
 					Log.d(TAG, "DATA :: " + responseData.getSuccess());
 					if (responseData.getSuccess()) {
 						LoginTable login = responseData.getData();
-						Log.d(TAG, "AllUser Id :: " + login.getAllUserId());
-						Log.d(TAG, "Active status :: " + login.getActiveStatus());
-						Log.d(TAG, "Role :: " + login.getUserRole());
 
-						Intent intent = new Intent(context, CommonUserDashboard.class);
-						context.startActivity(intent);
-						Message.toastMessage(context, responseData.getMessage());
+						IntentUtil.goToAnotherActivity(context, CommonUserDashboard.class);
+						CustomAlertMessage.toastMessage(context, responseData.getMessage());
 					} else {
-						Message.toastMessage(context, responseData.getMessage());
+						CustomAlertMessage.showCustomAlert(context, "LOGON FAILED",responseData.getMessage(), responseData.getSuccess());
 					}
 					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {

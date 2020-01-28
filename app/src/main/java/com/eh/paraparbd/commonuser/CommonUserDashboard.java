@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.eh.paraparbd.R;
+import com.eh.paraparbd.utils.CustomAlertMessage;
 
 public class CommonUserDashboard extends AppCompatActivity {
 
@@ -29,8 +30,9 @@ public class CommonUserDashboard extends AppCompatActivity {
 		raidSharingBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				AlertUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
-				Toast.makeText(context, "Not In Service", Toast.LENGTH_SHORT).show();
+				String title = "NOT IN SERVICE";
+				String message = "COMING SOON!";
+				CustomAlertMessage.showCustomAlert(context, title, message, false);
 			}
 		});
 
@@ -45,8 +47,9 @@ public class CommonUserDashboard extends AppCompatActivity {
 		eBusTicketingBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				AlertUtil.showAlartDialog(context, "Not In Service", "Comming Soon!!", false);
-				Toast.makeText(context, "Not In Service", Toast.LENGTH_SHORT).show();
+				String title = "NOT IN SERVICE";
+				String message = "COMING SOON!";
+				CustomAlertMessage.showCustomAlert(context, title, message, false);
 			}
 		});
 	}

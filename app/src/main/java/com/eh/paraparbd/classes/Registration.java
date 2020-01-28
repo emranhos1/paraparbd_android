@@ -7,6 +7,7 @@ import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.model.CommonUserRegTable;
 import com.eh.paraparbd.pojo.CommonUserRegCollection;
 import com.eh.paraparbd.utils.AlertUtil;
+import com.eh.paraparbd.utils.CustomAlertMessage;
 import com.eh.paraparbd.utils.PBDUtil;
 
 import retrofit2.Call;
@@ -17,6 +18,7 @@ public class Registration {
 
 	private static PBDApi pbdApi = PBDUtil.webserviceInitialize();
 	private final static String TAG = "Registration";
+	static CommonUserRegTable regTable = new CommonUserRegTable();
 
 	public static void commonUserRegistration(final Context context, CommonUserRegTable commonUserRegTable) {
 		AlertUtil.showProgressDialog(context);
@@ -28,9 +30,12 @@ public class Registration {
 					CommonUserRegCollection responseData = response.body();
 					Log.d(TAG, "Registration Response DATA :: " + responseData.getSuccess());
 					if (responseData.getSuccess()) {
-						CommonUserRegTable regTable = responseData.getData();
+						regTable = responseData.getData();
+					} else {
+						regTable = null;
 					}
-					Message.toastMessage(context, responseData.getMessage());
+
+					CustomAlertMessage.showCustomAlert(context, responseData.getSuccess() ? "SUCCESS" : "FAILED", responseData.getMessage(), responseData.getSuccess());
 					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {
 					Log.e(TAG, context +" : "+e);
