@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.eh.paraparbd.R;
 import com.eh.paraparbd.utils.CustomAlertMessage;
+import com.eh.paraparbd.utils.IntentUtil;
 
 public class CommonUserDashboard extends AppCompatActivity {
 
@@ -39,8 +40,7 @@ public class CommonUserDashboard extends AppCompatActivity {
 		rentACarBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, RentACarBooking.class);
-				startActivity(intent);
+				IntentUtil.goToAnotherActivity(context, RentACarBooking.class);
 			}
 		});
 
