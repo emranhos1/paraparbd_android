@@ -89,15 +89,6 @@ public class CommonUserRegistration extends AppCompatActivity {
 												commonUserRegTable.setDeviceLocation("");
 												commonUserRegTable.setDeviceIp("");
 
-												Log.d(TAG, "First Name :: " + commonUserRegTable.getFirstName());
-												Log.d(TAG, "Last Name :: " + commonUserRegTable.getLastName());
-												Log.d(TAG, "Gender :: " + commonUserRegTable.getGender());
-												Log.d(TAG, "Email :: " + commonUserRegTable.getEmail());
-												Log.d(TAG, "Phone No :: " + commonUserRegTable.getPhoneNo());
-												Log.d(TAG, "Address :: " + commonUserRegTable.getAddress());
-												Log.d(TAG, "password :: " + commonUserRegTable.getPassword());
-												Log.d(TAG, "DeviceLocation :: " + commonUserRegTable.getDeviceLocation());
-
 												Registration.commonUserRegistration(context, commonUserRegTable);
 											} else {
 												String title = "No Internet Connection";

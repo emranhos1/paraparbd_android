@@ -29,17 +29,8 @@ public class Registration {
 					Log.d(TAG, "Registration Response DATA :: " + responseData.getSuccess());
 					if (responseData.getSuccess()) {
 						CommonUserRegTable regTable = responseData.getData();
-						Log.d(TAG, "First Name :: " + regTable.getFirstName());
-						Log.d(TAG, "Last Name :: " + regTable.getLastName());
-						Log.d(TAG, "Gender :: " + regTable.getGender());
-						Log.d(TAG, "Email :: " + regTable.getEmail());
-						Log.d(TAG, "Phone No :: " + regTable.getPhoneNo());
-						Log.d(TAG, "Address :: " + regTable.getAddress());
-						Log.d(TAG, "password :: " + regTable.getPassword());
-						Log.d(TAG, "DeviceLocation :: " + regTable.getDeviceLocation());
-
-						Message.toastMessage(context, responseData.getMessage());
 					}
+					Message.toastMessage(context, responseData.getMessage());
 					AlertUtil.hideProgressDialog();
 				} catch (Exception e) {
 					Log.e(TAG, context +" : "+e);
