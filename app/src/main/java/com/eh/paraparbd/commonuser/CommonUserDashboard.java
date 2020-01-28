@@ -1,12 +1,12 @@
 package com.eh.paraparbd.commonuser;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.eh.paraparbd.R;
 import com.eh.paraparbd.utils.CustomAlertMessage;
 import com.eh.paraparbd.utils.IntentUtil;
