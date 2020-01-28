@@ -15,5 +15,5 @@ public interface PBDApi {
     Call<LoginCollection> userLogin(@Body LoginTable loginTable);
 
     @POST("/common-user/registration")
-    Call<CommonUserRegCollection> commonUserRegistration(CommonUserRegTable commonUserRegTable);
+    Call<CommonUserRegCollection> commonUserRegistration(@Body CommonUserRegTable commonUserRegTable);
 }
