@@ -1,9 +1,7 @@
 package com.eh.paraparbd.login;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +9,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eh.paraparbd.R;
+import com.eh.paraparbd.utils.CustomAlertMessage;
 import com.eh.paraparbd.classes.SignInfo;
-import com.eh.paraparbd.utils.AlertUtil;
+import com.eh.paraparbd.utils.IntentUtil;
 import com.eh.paraparbd.utils.PBDUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 	EditText btnPhoneNo, btnPassword;
 	Button btnLogin, btnSignUp;
 	String phoneNo, password;
-	final static String TAG = "MainActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
 		btnSignUp.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, CommonUserRegistration.class);
-				startActivity(intent);
+				IntentUtil.goToAnotherActivity(context, CommonUserRegistration.class);
 			}
 		});
 
@@ -51,18 +48,16 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View view) {
 				phoneNo = btnPhoneNo.getText().toString();
 				password = btnPassword.getText().toString();
-				Log.d(TAG, "Given Phone No"+ phoneNo);
-				Log.d(TAG, "Given Password"+ password);
 
 				if (!phoneNo.isEmpty()) {
 					if (!password.isEmpty()) {
 						if (PBDUtil.isInternetConnected(context)) {
 							SignInfo.getLoginInfo(context, phoneNo, password);
 						} else {
-							String title = "No Internet Connection";
+							String title = "NO INTERNET CONNECTION";
 							String message = "Please check your internet connection";
 							boolean status = false;
-							AlertUtil.showAlartDialog(context, title, message, status);
+							CustomAlertMessage.showCustomAlert(context, title, message, status);
 						}
 					} else {
 						btnPassword.setError("Password Should Not Be Blank");
