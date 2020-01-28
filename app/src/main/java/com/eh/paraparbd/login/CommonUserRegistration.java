@@ -98,7 +98,6 @@ public class CommonUserRegistration extends AppCompatActivity {
 												Log.d(TAG, "password :: " + commonUserRegTable.getPassword());
 												Log.d(TAG, "DeviceLocation :: " + commonUserRegTable.getDeviceLocation());
 
-												//FIXME
 												Registration.commonUserRegistration(context, commonUserRegTable);
 											} else {
 												String title = "No Internet Connection";
