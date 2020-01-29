@@ -1,6 +1,31 @@
 <resources>
     <string name="app_name">Paraparbd</string>
 
+    <string-array name="division">
+        <item>Select</item>
+        <item>Dhaka</item>
+        <item>Khulna</item>
+        <item>Barishal</item>
+    </string-array>
+    <string-array name="district">
+        <item>Select</item>
+        <item>Dhaka</item>
+        <item>Gopalganj</item>
+        <item>Gazipur</item>
+    </string-array>
+    <string-array name="policeStation">
+        <item>Select</item>
+        <item>Ramna</item>
+        <item>Badda</item>
+        <item>Rampura</item>
+    </string-array>
+    <string-array name="car">
+        <item>Select</item>
+        <item>BMW</item>
+        <item>Toyota</item>
+        <item>Ferari</item>
+    </string-array>
+
     <string name="phone_no">Phone No</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -40,4 +65,7 @@
     <string name="parapar_image">Parapar Image</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="division">Select Division</string>
+    <string name="district">Select District</string>
+    <string name="select_police_station">Select Police Station</string>
 </resources>
