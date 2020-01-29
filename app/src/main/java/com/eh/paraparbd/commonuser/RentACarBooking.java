@@ -38,7 +38,7 @@ public class RentACarBooking extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_rent_acar_booking);
 
         Spinner divisionSpinner = findViewById(R.id.spinner_division);
-        Spinner distictSpinner = findViewById(R.id.spinner_district);
+        Spinner districtSpinner = findViewById(R.id.spinner_district);
         Spinner policeStationSpinner = findViewById(R.id.spinner_police_station);
 
         //division
@@ -47,7 +47,7 @@ public class RentACarBooking extends AppCompatActivity implements DatePickerDial
 
         //district
         ArrayAdapter<CharSequence> districtAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.district);
-        CustomSpinnerArrayAdapter.setSpinner(this, distictSpinner, districtAdapter);
+        CustomSpinnerArrayAdapter.setSpinner(this, districtSpinner, districtAdapter);
 
         //police station
         ArrayAdapter<CharSequence> policeStationAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.policeStation);
