@@ -7,7 +7,6 @@ import com.eh.paraparbd.Service.PBDApi;
 import com.eh.paraparbd.model.DivisionTable;
 import com.eh.paraparbd.pojo.DivisionCollection;
 import com.eh.paraparbd.utils.AlertUtil;
-import com.eh.paraparbd.utils.CustomAlertMessage;
 import com.eh.paraparbd.utils.PBDUtil;
 
 import java.util.List;
