@@ -3,6 +3,7 @@ package com.eh.paraparbd.commonuser;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,10 +16,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eh.paraparbd.R;
+import com.eh.paraparbd.classes.PlaceInfo;
+import com.eh.paraparbd.model.DivisionTable;
 import com.eh.paraparbd.utils.CustomAlertMessage;
 import com.eh.paraparbd.utils.CustomSpinnerArrayAdapter;
+import com.eh.paraparbd.utils.PBDUtil;
 
+import java.lang.reflect.Array;
 import java.util.Calendar;
+import java.util.List;
 
 public class RentACarBooking extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
@@ -49,6 +55,18 @@ public class RentACarBooking extends AppCompatActivity implements DatePickerDial
         addressPickText = findViewById(R.id.pickup_address);
         addressDropText = findViewById(R.id.drop_address);
         totalAmountText = findViewById(R.id.total_amount);
+
+        if (PBDUtil.isInternetConnected(context)) {
+            List<DivisionTable> responseData = PlaceInfo.getAllDivision(context);
+//            for (int i = 0; i < responseData.size(); i++) {
+//
+//                String name = responseData.get(i).getDivisionName();
+//                Log.d("Division Name :::::  ", name);
+////                int id = responseData.get(i).getDivisionId();
+//            }
+        } else {
+            CustomAlertMessage.showCustomAlert(context, "No Internet Connection", "Please check your internet connection", false);
+        }
 
         //division
         ArrayAdapter<CharSequence> divisionAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.division);
