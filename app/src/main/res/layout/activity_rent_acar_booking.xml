@@ -108,6 +108,7 @@
                     android:id="@+id/spinner_division"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
                     android:paddingRight="10dp" />
             </LinearLayout>
 
@@ -126,6 +127,7 @@
                     android:id="@+id/spinner_district"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
                     android:paddingRight="10dp" />
             </LinearLayout>
 
@@ -144,6 +146,7 @@
                     android:id="@+id/spinner_police_station"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
                     android:paddingRight="10dp" />
             </LinearLayout>
         </LinearLayout>

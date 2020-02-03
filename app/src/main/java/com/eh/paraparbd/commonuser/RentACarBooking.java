@@ -3,7 +3,6 @@ package com.eh.paraparbd.commonuser;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,26 +15,27 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eh.paraparbd.R;
+import com.eh.paraparbd.classes.CarModelInfo;
 import com.eh.paraparbd.classes.PlaceInfo;
-import com.eh.paraparbd.model.DivisionTable;
 import com.eh.paraparbd.utils.CustomAlertMessage;
-import com.eh.paraparbd.utils.CustomSpinnerArrayAdapter;
 import com.eh.paraparbd.utils.PBDUtil;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class RentACarBooking extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
 
     Button btnDatePicker,btnSendRequest;
 //    Button btnTimePicker;
-    TextView dateText, timeText;
+    TextView dateText;
+//    TextView timeText;
     EditText addressPickText, addressDropText, totalAmountText;
     String addressPickup, addressDrop, totalAmount, divisionName, divisionDropName;
     String districtName, districtDropName, policeStationName, policeStationDropName, carName;
     Context context;
+    ArrayList<String> responseData;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,35 +57,28 @@ public class RentACarBooking extends AppCompatActivity implements DatePickerDial
         totalAmountText = findViewById(R.id.total_amount);
 
         if (PBDUtil.isInternetConnected(context)) {
-            List<DivisionTable> responseData = PlaceInfo.getAllDivision(context);
-//            for (int i = 0; i < responseData.size(); i++) {
-//
-//                String name = responseData.get(i).getDivisionName();
-//                Log.d("Division Name :::::  ", name);
-////                int id = responseData.get(i).getDivisionId();
-//            }
+
+            responseData = PlaceInfo.getAllDivision(context);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responseData);
+            divisionSpinner.setAdapter(adapter);
+            divisionDropSpinner.setAdapter(adapter);
+
+            responseData = PlaceInfo.getAllDistrict(context);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responseData);
+            districtSpinner.setAdapter(adapter);
+            districtDropSpinner.setAdapter(adapter);
+
+            responseData = PlaceInfo.getAllPoliceStation(context);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responseData);
+            policeStationSpinner.setAdapter(adapter);
+            policeStationDropSpinner.setAdapter(adapter);
+
+            responseData = CarModelInfo.getAllCarModel(context);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responseData);
+            carSpinner.setAdapter(adapter);
         } else {
             CustomAlertMessage.showCustomAlert(context, "No Internet Connection", "Please check your internet connection", false);
         }
-
-        //division
-        ArrayAdapter<CharSequence> divisionAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.division);
-        CustomSpinnerArrayAdapter.setSpinner(this, divisionSpinner, divisionAdapter);
-        CustomSpinnerArrayAdapter.setSpinner(this, divisionDropSpinner, divisionAdapter);
-
-        //district
-        ArrayAdapter<CharSequence> districtAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.district);
-        CustomSpinnerArrayAdapter.setSpinner(this, districtSpinner, districtAdapter);
-        CustomSpinnerArrayAdapter.setSpinner(this, districtDropSpinner, districtAdapter);
-
-        //police station
-        ArrayAdapter<CharSequence> policeStationAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.policeStation);
-        CustomSpinnerArrayAdapter.setSpinner(this, policeStationSpinner, policeStationAdapter);
-        CustomSpinnerArrayAdapter.setSpinner(this, policeStationDropSpinner, policeStationAdapter);
-
-        //car
-        ArrayAdapter<CharSequence> carAdapter = CustomSpinnerArrayAdapter.getAdapter(context, R.array.car);
-        CustomSpinnerArrayAdapter.setSpinner(this, carSpinner, carAdapter);
 
         btnDatePicker = findViewById(R.id.date_picker);
         btnSendRequest = findViewById(R.id.btn_send_request);
